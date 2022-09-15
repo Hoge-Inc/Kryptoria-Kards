@@ -1,0 +1,96 @@
+
+a:hover {
+  cursor: url(https://ani.cursors-4u.net/cursors/cur-12/cur1080.cur),auto!important;
+}
+
+.App {
+  text-align: center;
+  cursor: url(https://ani.cursors-4u.net/cursors/cur-12/cur1080.cur),auto!important;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  background:radial-gradient(transparent 45%, #0ebbfa11, transparent 60% );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 9s linear;
+  }
+}
+
+.App-header {
+  background-color:#000921f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24pt;
+  color: darkkhaki;
+  text-shadow: -1px -2px 1px rgba(96, 88, 1, 0.8), -1px 2px 1px rgba(14, 166, 209, 0.58);
+}
+
+body{
+  background-color: #00081cdb;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate3d(0, 0, 0, 0deg);
+  }
+  to {
+    transform: rotate3d(1, 0, 1, 360deg);
+  }
+}
+
+button.get:active {
+  cursor: grabbing;
+}
+
+/* get class button */
+button.get {
+  background-color: seagreen;
+  font: 400 18px system-ui;
+  padding: 1em;
+  cursor:pointer;
+  color: lavender;
+  text-shadow: 1px 2px grey;
+  border-radius: 10px;
+}
+button.get:hover {
+  background-color: rgba(128, 255, 0, 0.582);
+  color: blueviolet;
+  font-weight:bolder;
+  text-shadow: none;
+}
+
+/* default input box */
+input {
+  background-color: lightgoldenrodyellow;
+  color: darkviolet;
+  margin-bottom: 1em;
+  font: 400 16px system-ui;
+  inline-size: 23rem;
+  padding: .2em;
+  padding-left: .3em;
+  border-radius: 7px;
+  transform: translateY(-5px);
+  margin: 15px;
+}
+/* color change  */
+input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: crimson;
+  opacity: 1; /* Firefox */
+}
+
+h1 {
+  color:darkolivegreen;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+  font-size: 3em;
+  text-shadow: 1px 3px 0 #969696, 1px 13px 5px #414d72;
+}

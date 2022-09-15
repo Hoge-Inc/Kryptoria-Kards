@@ -1,2 +1,4 @@
-# Kryptoria-Kards
- Some NFT display cards and calcs
+# yarn install
+# yarn start
+
+
