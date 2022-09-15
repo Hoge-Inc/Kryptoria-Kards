@@ -1,33 +1,29 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 .CardBox {
     margin: 30px;
+    align-items:center;
 }
 
 .Card {
     position: relative;
-    background: linear-gradient(teal 40%, green 60%, black 80%);
-    display: flex;
+    background: linear-gradient(teal 40%, navy 80%);
+
     flex-direction: column;
     font-size: 12pt;
     color: darkkhaki;
     margin: 5px;
     margin-top: 25px;
     padding: 5px;
-    height: 700px;
-    width: 280px;
+
     text-align: center;
     border-radius: 15px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .CardImageFrame{
-    border: 4px solid goldenrod;
-    margin: 7px;
+    
+    border: 4px solid black;
+    margin: 10px;
     border-radius: 10px;
     position:sticky;
 }
@@ -37,12 +33,15 @@
     border-radius: 6px;
 }
 .CardBody{
+
     background: black;
     padding: 1em;
-    height: 23em;
+    height: 98%;
+    width: 98%;
     border-radius: 30% / 10%;
 }
 .CardTitle{
+
     color: darkgoldenrod;
     height: 2em;
     font-size: 1.5em;
@@ -56,6 +55,7 @@
 .CardText{
     color: honeydew;
     font-size: xx-small;
+    text-align: center;
 }
 
 .icons{
@@ -93,49 +93,83 @@
     height: 3em;
 }
 
+:root {
+    --lgHegiht: 580px;
+    --mdHegiht: 530px;
+    --smHegiht: 410px;
+    --lgWidth: 400px;
+    --mdWidth: 330px;
+    --smWidth: 230px;
+
+}
+
 @media (max-width:575px) {
-    .Card{
-        width: 400px;
-        height: 800px;
+    .flip-card-container{
+        width: var(--lgWidth);
+        height: var(--lgHegiht);
+    }
+    .CardSubtitle{
+        font-size: larger;
     }
     .CardText{
-        font-size: small;
+        font-size: medium;
+    }
+}
+@media (min-width:575px) {
+    .flip-card-container{
+        width: var(--lgWidth);
+        height: var(--lgHegiht);
+    }
+    .CardSubtitle{
+        font-size: larger;
+    }
+    .CardText{
+        font-size: medium;
     }
 }
 
 @media (min-width:775px) {
-    .Card{
-        width: 400px;
-        height: 800px;
+    .flip-card-container{
+        width: var(--lgWidth);
+        height: var(--lgHegiht);
+    }
+    .CardSubtitle {
+        font-size: larger;
     }
     .CardText{
-        font-size:small;
+        font-size:medium;
     }
 }
 
 @media (min-width:1200px) {
-    .Card{
-        width: 220px;
-        height: 650px;
+    .flip-card-container{
+        width: var(--smWidth);
+        height: var(--smHegiht);
+    }
+    .CardSubtitle {
+        font-size: small;
     }
     .CardText{
         font-size: xx-small;
     }
 }
 @media (min-width:1775px) {
-    .Card{
-        height: 47em;
-        width: 320px;
+    .flip-card-container{
+        height: var(--mdHegiht);
+        width: var(--mdWidth);
+    }
+    .CardSubtitle {
+        font-size: large;
     }
     .CardText{
-        font-size: x-small;
+        font-size: small;
     }
 }
 
 @media (min-width:2275px) {
-    .Card{
-        height: 49em;
-        width: 370px;
+    .flip-card-container{
+        height: var(--mdHegiht);
+        width: var(--mdWidth);
     }
     .CardSubtitle{
         height: 15em;
@@ -145,3 +179,144 @@
         font-size: x-small;
     }
 }
+
+
+
+
+.flip-card-container {
+    --hue: 150;
+    --primary: hsl(var(--hue), 50%, 50%);
+    --white-1: hsl(0, 0%, 90%);
+    --white-2: hsl(0, 0%, 80%);
+    --dark: hsl(var(--hue), 25%, 10%);
+    --grey: hsl(0, 0%, 50%);
+    margin: 10px;
+    perspective: 1000px;
+
+  }
+  
+  /* .flip-card */
+  .flip-card {
+    width: inherit;
+    height: inherit;
+  
+    position: relative;
+    transform-style: preserve-3d;
+    transition: .6s .1s;
+  }
+  
+  /* hover and focus-within states */
+  .flip-card-container:hover .flip-card,
+  .flip-card-container:focus-within .flip-card {
+    transform: rotateY(180deg);
+  }
+  
+  /* .card-... */
+  .card-front,
+  .card-back {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    backface-visibility: hidden;
+    display: flex;    
+  }
+  
+  /* .card-front */
+  .card-front {
+    transform: rotateY(0deg);
+    z-index: 1;
+    flex-direction: column;
+  }
+  
+  /* .card-back */
+  .card-back {
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+    z-index: 2;
+  }
+  
+  /* figure */
+  figure {
+
+    z-index: -1;
+  }
+  
+  /* The background image in front of the citizen */
+  
+  .img-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Citizen Image */
+
+    
+  .img-bg {
+    background: hsla(var(--hue), 25%, 10%, .5);
+  }
+  
+  .card-front .img-bg {
+    clip-path: polygon(0 99%, 100% 40%, 100% 100%, 0 100%);
+  }
+  
+  .card-front .img-bg::before {
+    content: "";
+  
+    position: absolute;
+    top: 34%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(180deg);
+  
+    width: 100%;
+    height: 6px;
+    border: 1px solid var(--primary);
+    border-left-color: transparent;
+    border-right-color: transparent;
+  
+    transition: .1s;
+  }
+  
+  .card-back .img-bg {
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 60%);
+  }
+  
+  /* hover state */
+  .flip-card-container:hover .card-front .img-bg::before {
+    width: 6px;
+    border-left-color: var(--primary);
+    border-right-color: var(--primary);
+  }
+
+  /* default */
+*,
+*::after,
+*::before {
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* .flip-card-container */
+
+
+.card-front-body{
+
+    position:relative;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    background: black;
+    padding: 1em;
+    border-radius: 30% / 10%;
+
+}
+

@@ -43,7 +43,7 @@ export const Kards: React.FC<Props> = ({
                 }
             }
             console.log(key, jsonItemList)
-            const iconDiv = !aType ? <div className='iconDiv'></div> :
+            const iconDiv = !aType ? <div className='icons'>No Armour</div> :
                 <div className='icons' hidden={!aType}>
                     <GiSamusHelmet /> {hType}
                     <br/>
@@ -54,39 +54,53 @@ export const Kards: React.FC<Props> = ({
                 keyImage = 'https://ipfs.io/ipfs/' + keyImage?.slice(7, keyImage.length)
             }
             const component = React.createElement("div", {key: key, align:"center",
-                    className: 'col-12 col-sm-6 col-lg-4 col-xl-2 '},
-                <div className='Card'>
-                    <div className='CardImageFrame'>
-                        <img className='CardImage img-fluid'src={keyImage} alt={keyImage} />
-                    </div>
-                    <div className='CardTitle'>
-                            #{key}
-                    </div>
-                    <div className='CardBody'>
-
-                        {iconDiv}
-
-                        <div className='CardSubtitle'>
-                            {traits}
+                    className: 'flip-card-container col-12 col-sm-6 col-lg-4 col-xl-2 '},
+                <div className='flip-card Card'>
+                    <div className='card-front'>
+                        <figure>
+                            <div className='CardImageFrame'>
+                                <img className='CardImage img-fluid'src={keyImage} alt={keyImage} />
+                            </div>
+                        </figure>
+                        <div className='CardTitle'>
+                                #{key}
                         </div>
-                        <button className='inspect' onClick={(e: { preventDefault: () => void; }) => 
-                            { e.preventDefault(); window.open(
-                                openseaLink,
-                                '_blank' // <- This is what makes it open in a new window.
-                              ); }}>
-                            OpenSea.io</button>
+                        <span className='card-front-body'>
+
+                            {iconDiv}
+                        </span>
+                        
                     </div>
-                    <div className='CardText'>
-                        {contractAddress}
+                    
+                    <div className='card-back'>
+                        <div className='CardBody'>
+                            <div className='CardSubtitle'>
+                            <p/>{traits}<p/>
+                            </div>
+                            <br/>
+                            <button className='inspect' onClick={(e: { preventDefault: () => void; }) => 
+                                { e.preventDefault(); window.open(
+                                    openseaLink,
+                                    '_blank' // <- This is what makes it open in a new window.
+                                ); }}>
+                                OpenSea.io</button>
+                            <p />
+                            <div className='CardText'>
+                                {contractAddress}
+                            </div>
+                        </div>
                     </div>
+                        
                 </div>
+
+                
             )
             rendered.push(component);
         }
     } 
     return (
-        <div className='CardBox'>
-            <div className='row align-content-center '>
+        <div className='CardBox '>
+            <div className='row '>
                 {rendered}
             </div>
         </div>

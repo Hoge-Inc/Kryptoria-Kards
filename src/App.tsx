@@ -40,7 +40,7 @@ const App: React.FC = () => {
       setImages={setImages}
     />
     <header className="App-header">
-        <h1>Zem's Kryptoria NFT Scraper</h1>
+        <h1>Kryptoria Kards</h1>
         <img src={logo} className="App-logo" alt="logo" />
         <div hidden={!someMsg}>{someMsg}</div>
         <br />
