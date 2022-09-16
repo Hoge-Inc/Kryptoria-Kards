@@ -54,7 +54,7 @@ export const Kards: React.FC<Props> = ({
                 keyImage = 'https://ipfs.io/ipfs/' + keyImage?.slice(7, keyImage.length)
             }
             const component = React.createElement("div", {key: key, align:"center",
-                    className: 'flip-card-container col-12 col-sm-6 col-lg-4 col-xl-2 '},
+                    className: 'flip-card-container'},
                 <div className='flip-card Card'>
                     <div className='card-front'>
                         <figure>
@@ -100,9 +100,9 @@ export const Kards: React.FC<Props> = ({
     } 
     return (
         <div className='CardBox '>
-            <div className='row '>
+            
                 {rendered}
-            </div>
+
         </div>
     )
 }

@@ -1,8 +1,5 @@
 
-.CardBox {
-    margin: 30px;
-    align-items:center;
-}
+
 
 .Card {
     position: relative;
@@ -28,7 +25,8 @@
     position:sticky;
 }
 .CardImage{
-    
+    width: 100%;
+    height: 100%;
     padding: 0.25em;
     border-radius: 6px;
 }
@@ -89,8 +87,16 @@
     opacity: 90%;  
 }
 
-.iconDiv {
+.icons {
     height: 3em;
+}
+
+.CardBox {
+    margin: 1%;
+    width: 98%;
+    display: grid;
+    gap: 10px;
+    justify-content: space-evenly;
 }
 
 :root {
@@ -99,11 +105,15 @@
     --smHegiht: 410px;
     --lgWidth: 400px;
     --mdWidth: 330px;
-    --smWidth: 230px;
+    --smWidth: 250px;
 
 }
 
 @media (max-width:575px) {
+    .CardBox{
+        grid-auto-rows: var(--lgHegiht);
+        grid-template-areas: "a";
+    }
     .flip-card-container{
         width: var(--lgWidth);
         height: var(--lgHegiht);
@@ -116,6 +126,10 @@
     }
 }
 @media (min-width:575px) {
+    .CardBox{
+        grid-auto-rows: var(--lgHegiht);
+        grid-template-areas: "a";
+    }
     .flip-card-container{
         width: var(--lgWidth);
         height: var(--lgHegiht);
@@ -129,9 +143,13 @@
 }
 
 @media (min-width:775px) {
+    .CardBox{
+        grid-auto-rows: var(--mdHegiht);
+        grid-template-areas: "a a";
+    }
     .flip-card-container{
-        width: var(--lgWidth);
-        height: var(--lgHegiht);
+        width: var(--mdWidth);
+        height: var(--mdHegiht);
     }
     .CardSubtitle {
         font-size: larger;
@@ -142,6 +160,10 @@
 }
 
 @media (min-width:1200px) {
+    .CardBox{
+        grid-auto-rows: var(--smHegiht);
+        grid-template-areas: "a a a a";
+    }
     .flip-card-container{
         width: var(--smWidth);
         height: var(--smHegiht);
@@ -154,6 +176,10 @@
     }
 }
 @media (min-width:1775px) {
+    .CardBox{
+        grid-auto-rows: var(--lgHegiht);
+        grid-template-areas: "a a a a a";
+    }
     .flip-card-container{
         height: var(--mdHegiht);
         width: var(--mdWidth);
@@ -167,6 +193,10 @@
 }
 
 @media (min-width:2275px) {
+    .CardBox{
+        grid-auto-rows: var(--lgHegiht);
+        grid-template-areas: "a a a a a a";
+    }
     .flip-card-container{
         height: var(--mdHegiht);
         width: var(--mdWidth);
