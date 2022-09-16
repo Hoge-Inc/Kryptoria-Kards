@@ -89,7 +89,7 @@
 
 .CardBox {
     margin-top: 2%;
-    width: 98%;
+    width: 100%;
     display: grid;
     gap: 10px;
     justify-content: space-evenly;
@@ -354,7 +354,6 @@
 
 
 .CardFrontBody{
-
     position:relative;
     text-align: center;
     width: 100%;
@@ -362,6 +361,5 @@
     background: black;
     padding: 1em;
     border-radius: 30% / 10%;
-
 }
 
