@@ -30,8 +30,7 @@
     padding: 0.25em;
     border-radius: 6px;
 }
-.CardBody{
-
+.CardBackBody{
     background: black;
     padding: 1em;
     height: 98%;
@@ -47,13 +46,13 @@
 }
 .CardSubtitle{
     color: dimgray;
-    height: 16em;
-    font-size: small;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    height: 40%;
 }
 .CardText{
     color: honeydew;
-    font-size: xx-small;
-    text-align: center;
+
 }
 
 .icons{
@@ -72,6 +71,7 @@
     border-radius: 10px;
     color: wheat;
     text-shadow: 2px 2px 1px darkblue;
+    margin: 20px;
 }
 
 .inspect:hover {
@@ -87,10 +87,6 @@
     opacity: 90%;  
 }
 
-.icons {
-    height: 3em;
-}
-
 .CardBox {
     margin: 1%;
     width: 98%;
@@ -100,13 +96,15 @@
 }
 
 :root {
-    --lgHegiht: 580px;
-    --mdHegiht: 530px;
+    --lgHegiht: 560px;
+    --mdHegiht: 500px;
     --smHegiht: 410px;
     --lgWidth: 400px;
     --mdWidth: 330px;
     --smWidth: 250px;
-
+    --lgButtonMargin: 8em;
+    --mdButtonMargin: 6em;
+    --smButtonMargin: 4em;
 }
 
 @media (max-width:575px) {
@@ -124,6 +122,9 @@
     .CardText{
         font-size: medium;
     }
+    .ButtonBox {
+        margin-top: var(--lgButtonMargin);
+    }
 }
 @media (min-width:575px) {
     .CardBox{
@@ -140,6 +141,9 @@
     .CardText{
         font-size: medium;
     }
+    .ButtonBox {
+        margin-top: var(--lgButtonMargin);
+    }
 }
 
 @media (min-width:775px) {
@@ -155,7 +159,10 @@
         font-size: larger;
     }
     .CardText{
-        font-size:medium;
+        font-size:small;
+    }
+    .ButtonBox {
+        margin-top: var(--mdButtonMargin);
     }
 }
 
@@ -174,10 +181,13 @@
     .CardText{
         font-size: xx-small;
     }
+    .ButtonBox {
+        margin-top: var(--smButtonMargin);
+    }
 }
 @media (min-width:1775px) {
     .CardBox{
-        grid-auto-rows: var(--lgHegiht);
+        grid-auto-rows: var(--mdHegiht);
         grid-template-areas: "a a a a a";
     }
     .flip-card-container{
@@ -190,11 +200,14 @@
     .CardText{
         font-size: small;
     }
+    .ButtonBox {
+        margin-top: var(--mdButtonMargin);
+    }
 }
 
 @media (min-width:2275px) {
     .CardBox{
-        grid-auto-rows: var(--lgHegiht);
+        grid-auto-rows: var(--mdHegiht);
         grid-template-areas: "a a a a a a";
     }
     .flip-card-container{
@@ -202,11 +215,13 @@
         width: var(--mdWidth);
     }
     .CardSubtitle{
-        height: 15em;
-        font-size: small;
+        font-size: large;
     }
     .CardText{
-        font-size: x-small;
+        font-size: small;
+    }
+    .ButtonBox {
+        margin-top: var(--mdButtonMargin);
     }
 }
 
@@ -338,7 +353,7 @@
 /* .flip-card-container */
 
 
-.card-front-body{
+.CardFrontBody{
 
     position:relative;
     text-align: center;

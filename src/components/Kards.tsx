@@ -65,7 +65,7 @@ export const Kards: React.FC<Props> = ({
                         <div className='CardTitle'>
                                 #{key}
                         </div>
-                        <span className='card-front-body'>
+                        <span className='CardFrontBody'>
 
                             {iconDiv}
                         </span>
@@ -73,20 +73,20 @@ export const Kards: React.FC<Props> = ({
                     </div>
                     
                     <div className='card-back'>
-                        <div className='CardBody'>
+                        <div className='CardBackBody'>
                             <div className='CardSubtitle'>
-                            <p/>{traits}<p/>
+                            {traits}
                             </div>
-                            <br/>
-                            <button className='inspect' onClick={(e: { preventDefault: () => void; }) => 
-                                { e.preventDefault(); window.open(
-                                    openseaLink,
-                                    '_blank' // <- This is what makes it open in a new window.
-                                ); }}>
-                                OpenSea.io</button>
-                            <p />
-                            <div className='CardText'>
-                                {contractAddress}
+                            <div className='ButtonBox'>
+                                <button className='inspect' onClick={(e: { preventDefault: () => void; }) => 
+                                    { e.preventDefault(); window.open(
+                                        openseaLink,
+                                        '_blank' // <- This is what makes it open in a new window.
+                                    ); }}>
+                                    OpenSea.io</button>
+                                <div className='CardText'>
+                                    {contractAddress}
+                                </div>
                             </div>
                         </div>
                     </div>
