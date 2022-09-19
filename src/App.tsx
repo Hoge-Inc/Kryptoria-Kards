@@ -9,13 +9,16 @@ import Kards from './components/Kards';
 const App: React.FC = () => {
   
   const contractAddress = "0x63d85ec7b1561818ec03e158ec125a4113038a00"
-  const [someMsg, setSomeMsg] = useState<string>('')
-  const [loaded, setLoaded] = useState<boolean>(false)
-  const [valid, setValid] = useState<boolean>(false)
-  const [tokenIds, setTokenIds] = useState<Map<number, []>>()
+  const landContractAddress = '0x17D084106C2f1C716ce39fa015AB022757d30C9A'
   const [holderAddress, setHolderAddress] = useState<string>('')
+  const [someMsg, setSomeMsg] = useState<string>('')
+  const [valid, setValid] = useState<boolean>(false)
+  const [loaded, setLoaded] = useState<boolean>(false)
+  const [tokenIds, setTokenIds] = useState<Map<number, []>>()
   const [images, setImages] = useState<Map<number, string>>()
-  const [rendered, setRendered] = useState<boolean>(false)
+  const [landLoaded, setLandLoaded] = useState<boolean>(false)
+  const [landTokenIds, setLandTokenIds] = useState<Map<number, []>>()
+  const [landImages, setLandImages] = useState<Map<number, string>>()
 
   const handleOnSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -39,6 +42,16 @@ const App: React.FC = () => {
       setTokenIds={setTokenIds}
       setImages={setImages}
     />
+    <GetNFTs 
+      holderAddress={holderAddress}
+      contractAddress={landContractAddress}
+      loaded={landLoaded}
+      setLoaded={setLandLoaded}
+      valid={valid}
+      tokenIds={landTokenIds}
+      setTokenIds={setLandTokenIds}
+      setImages={setLandImages}
+    />
     <header className="App-header">
         <h1>Kryptoria Kards</h1>
         <img src={logo} className="App-logo" alt="logo" />
@@ -60,8 +73,13 @@ const App: React.FC = () => {
           contractAddress={contractAddress}
           tokenIds={tokenIds}
           images={images}
-          cardRendered={rendered}
-          setCardRendered={setRendered}
+        />
+        <Kards
+          loaded={landLoaded}
+          holderAddress={holderAddress}
+          contractAddress={landContractAddress}
+          tokenIds={landTokenIds}
+          images={landImages}
         />
     </div>
   </div>

@@ -23,7 +23,6 @@ export const GetNFTs: React.FC<Props> = ({
 
 }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    
     React.useEffect(() => {
         if (!isLoading && !tokenIds) {
             const API_KEY = process.env.REACT_APP_MORALIS_API_KEY
