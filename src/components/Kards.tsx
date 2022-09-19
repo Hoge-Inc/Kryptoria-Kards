@@ -30,7 +30,7 @@ export const Kards: React.FC<Props> = ({
         for(let [key, value] of tokenIds) {
             const openseaLink = "https://opensea.io/assets/ethereum/" + contractAddress + "/" + key
             if (!value) {
-
+                console.log(key)
 
                 let keyImage = images?.get(key)
                 if (keyImage?.substring(0,7) === 'ipfs://') { 
