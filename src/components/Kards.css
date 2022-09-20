@@ -18,6 +18,12 @@
     --lgButtonMargin: 8em;
     --mdButtonMargin: 6em;
     --smButtonMargin: 4em;
+    --lgIdMargin: 24px 28px;
+    --mdIdMargin: 25px 27px;
+    --smIdMargin: 22px;
+    --lgIdSize: 2.7em;
+    --mdIdSize: 2.1em;
+    --smIdSize: 1.5em
 }
 
 @media (max-width:575px) {
@@ -29,11 +35,15 @@
         width: var(--lgWidth);
         height: var(--lgHegiht);
     }
+    .CardTitle{
+        margin: var(--lgIdMargin);
+        font-size: var(--lgIdSize);
+    }
     .CardSubtitle{
         font-size: larger;
     }
     .CardText{
-        font-size: medium;
+        font-size: small;
     }
     .ButtonBox {
         margin-top: var(--lgButtonMargin);
@@ -48,11 +58,15 @@
         width: var(--lgWidth);
         height: var(--lgHegiht);
     }
+    .CardTitle{
+        margin: var(--lgIdMargin);
+        font-size: var(--lgIdSize);
+    }
     .CardSubtitle{
         font-size: larger;
     }
     .CardText{
-        font-size: medium;
+        font-size: small;
     }
     .ButtonBox {
         margin-top: var(--lgButtonMargin);
@@ -67,6 +81,10 @@
     .Card{
         width: var(--mdWidth);
         height: var(--mdHegiht);
+    }
+    .CardTitle{
+        margin: var(--mdIdMargin);
+        font-size: var(--mdIdSize);
     }
     .CardSubtitle {
         font-size: larger;
@@ -88,6 +106,10 @@
         width: var(--smWidth);
         height: var(--smHegiht);
     }
+    .CardTitle{
+        margin: var(--smIdMargin);
+        font-size: var(--smIdSize);
+    }
     .CardSubtitle {
         font-size: small;
     }
@@ -106,6 +128,10 @@
     .Card{
         height: var(--mdHegiht);
         width: var(--mdWidth);
+    }
+    .CardTitle{
+        margin: var(--mdIdMargin);
+        font-size: var(--mdIdSize);
     }
     .CardSubtitle {
         font-size: large;
@@ -126,6 +152,10 @@
     .Card{
         height: var(--mdHegiht);
         width: var(--mdWidth);
+    }
+    .CardTitle{
+        margin: var(--mdIdMargin);
+        font-size: var(--mdIdSize);
     }
     .CardSubtitle{
         font-size: large;
@@ -258,16 +288,12 @@ figure {
     border-radius: var(--bborder);
 }
 .CardTitle{
-
+    position:absolute;
     color: darkgoldenrod;
     height: 2em;
-    font-size: 1.5em;
     text-shadow: 2px 2px 1px darkblue;
 }
-.CardTitle{
-    margin: 22px;
-    position:absolute;
-}
+
 .CardSubtitle{
     color: dimgray;
     margin-top: 30px;
