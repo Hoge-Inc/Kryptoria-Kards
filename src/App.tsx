@@ -27,7 +27,6 @@ const App: React.FC = () => {
     else { setValid(true); setSomeMsg('') }
     setSomeMsg('') //hides message block
     setLoaded(false) //resets loaded before new fetch
-    console.log(contractAddress);
   };
 
   return (
@@ -66,22 +65,20 @@ const App: React.FC = () => {
         />
         <br />
     </header>
-    <div className='cardBox'>
-      <Kards
-          loaded={loaded}
-          holderAddress={holderAddress}
-          contractAddress={contractAddress}
-          tokenIds={tokenIds}
-          images={images}
-        />
-        <Kards
-          loaded={landLoaded}
-          holderAddress={holderAddress}
-          contractAddress={landContractAddress}
-          tokenIds={landTokenIds}
-          images={landImages}
-        />
-    </div>
+    <Kards
+      loaded={loaded}
+      holderAddress={holderAddress}
+      contractAddress={contractAddress}
+      tokenIds={tokenIds}
+      images={images}
+    />
+    <Kards
+      loaded={landLoaded}
+      holderAddress={holderAddress}
+      contractAddress={landContractAddress}
+      tokenIds={landTokenIds}
+      images={landImages}
+    />
   </div>
   );
 }

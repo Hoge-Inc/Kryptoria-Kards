@@ -1,5 +1,5 @@
 import React from 'react';
-import { GiAbdominalArmor, GiSamusHelmet } from 'react-icons/gi'
+import { GiAbdominalArmor, GiSamusHelmet, GiSleevelessJacket, GiSunglasses, GiQuillInk } from 'react-icons/gi'
 import './Kards.css'
 
 
@@ -28,60 +28,22 @@ export const Kards: React.FC<Props> = ({
         let itemKey = Math.random()
         
         for(let [key, value] of tokenIds) {
-            const openseaLink = "https://opensea.io/assets/ethereum/" + contractAddress + "/" + key
+            //const openseaLink = "https://opensea.io/assets/ethereum/" + contractAddress + "/" + key
             if (!value) {
                 console.log(key)
 
                 let keyImage = images?.get(key)
-                if (keyImage?.substring(0,7) === 'ipfs://') { 
-                    keyImage = 'https://dweb.link/ipfs/' + keyImage?.slice(7, keyImage.length)
-                }
-                const component = React.createElement("div", {key: key, align:"center",
-                        className: 'flip-card-container'},
-                    <div className='flip-card Card'>
-                        <div className='card-front'>
-                            <figure>
-                                <div className='CardImageFrame'>
-                                    <img className='CardImage img-fluid'src={keyImage} alt={keyImage} />
-                                </div>
-                            </figure>
-                            <div className='CardTitle'>
-                                    #{key}
-                            </div>
-                            <span className='CardFrontBody'>
 
-                            </span>
-                        </div>
-                        <div className='card-back'>
-                            <div className='CardBackBody'>
-                                <div className='CardSubtitle'>
-
-                                </div>
-                                <div className='ButtonBox'>
-                                    <button className='inspect' onClick={(e: { preventDefault: () => void; }) => 
-                                        { e.preventDefault(); window.open(
-                                            openseaLink,
-                                            '_blank' // <- This is what makes it open in a new window.
-                                        ); }}>
-                                        OpenSea.io</button>
-                                    <div className='CardText'>
-                                        {contractAddress}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            
-                    </div>
-
-                    
-                )
+                const component = createKomponent2(key,keyImage,contractAddress)
                 rendered.push(component);
-            } else {
+            } else if (key){
                 let traits: any[] = []
                 let jsonItemList = []
                 let aType
                 let hType
-                //console.log(value)
+                let cType
+                let fwType
+                let tType
                 for(let item of value) {
                     const jsonItem = JSON.parse(JSON.stringify(item))
                     if (jsonItem.trait_type !== undefined && jsonItem.value !== 'None' && jsonItem.value !== 0) { 
@@ -89,6 +51,9 @@ export const Kards: React.FC<Props> = ({
                         jsonItemList.push(jsonItem) 
                         if (jsonItem.trait_type === 'ARMOUR' && !aType){ aType =jsonItem.value } 
                         if (jsonItem.trait_type === 'HELMET' && !hType){ hType = jsonItem.value } 
+                        if (jsonItem.trait_type === 'CLOTHING' && !aType){ cType =jsonItem.value } 
+                        if (jsonItem.trait_type === 'FACE WEAR' && !hType){ fwType = jsonItem.value } 
+                        if (jsonItem.trait_type === 'TATTOO' && !hType){ tType = jsonItem.value } 
                     } else {
                         //todo: clothes
                         //console.log(item)
@@ -98,58 +63,39 @@ export const Kards: React.FC<Props> = ({
                 console.log(key, jsonItemList)
                 let iconDiv
                 if (!aType) {
-                    // todo: clothes
-                } else {
-                    iconDiv = !aType ? <div className='icons'>No Armour</div> :
-                        <div className='icons' hidden={!aType}>
-                            <GiSamusHelmet /> {hType}
-                            <br/>
-                            <GiAbdominalArmor/> {aType}  
+                    iconDiv = 
+                    <div className='icons'>
+                        <div hidden={!tType}>
+                            <GiQuillInk /> {tType}
+                        </div>                            
+                        <div hidden={!fwType}>
+                            <GiSunglasses /> {fwType}
+                        </div>
+                        <div hidden={!cType}>
+                            <GiSleevelessJacket/> {cType}  
                         </div>  
+                    </div>
+                } else {
+                    iconDiv =
+                        <div className='icons'>
+                            <div hidden={!tType}>
+                                <GiQuillInk /> {tType}
+                            </div>
+                            <div hidden={!fwType}>
+                                <GiSunglasses /> {fwType}
+                            </div>
+                            <div hidden={!hType}>
+                                <GiSamusHelmet /> {hType}
+                            </div>
+                            <div hidden={!aType}>
+                                <GiAbdominalArmor/> {aType}  
+                            </div>  
+                        </div>
                 }
                 let keyImage = images?.get(key)
-                if (keyImage?.substring(0,7) === 'ipfs://') { 
-                    keyImage = 'https://dweb.link/ipfs/' + keyImage?.slice(7, keyImage.length)
-                }
-                const component = React.createElement("div", {key: key, align:"center",
-                        className: 'flip-card-container'},
-                    <div className='flip-card Card'>
-                        <div className='card-front'>
-                            <figure>
-                                <div className='CardImageFrame'>
-                                    <img className='CardImage img-fluid'src={keyImage} alt={keyImage} />
-                                </div>
-                            </figure>
-                            <div className='CardTitle'>
-                                #{key}
-                            </div>
-                            <span className='CardFrontBody'>
-                                {iconDiv}
-                            </span>
-                        </div>
-                        <div className='card-back'>
-                            <div className='CardBackBody'>
-                                <div className='CardSubtitle'>
-                                    {traits}
-                                </div>
-                                <div className='ButtonBox'>
-                                    <button className='inspect' onClick={(e: { preventDefault: () => void; }) => 
-                                        { e.preventDefault(); window.open(
-                                            openseaLink,
-                                            '_blank' // <- This is what makes it open in a new window.
-                                        ); }}>
-                                        OpenSea.io</button>
-                                    <div className='CardText'>
-                                        {contractAddress}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            
-                    </div>
 
-                    
-                )
+                
+                const component = createKomponent(key,keyImage,iconDiv,traits,contractAddress)
                 rendered.push(component);
             }
         }
@@ -162,5 +108,100 @@ export const Kards: React.FC<Props> = ({
         </div>
     )
 }
+
+const createKomponent = (key: number, keyImage: string | undefined, iconDiv: JSX.Element | undefined, traits: any[], contractAddress: string) => {
+    const openseaLink = "https://opensea.io/assets/ethereum/" + contractAddress + "/" + key
+    if (keyImage?.substring(0,7) === 'ipfs://') { 
+        keyImage = 'https://dweb.link/ipfs/' + keyImage?.slice(7, keyImage.length)
+    }
+    const component = React.createElement("div", {key: key, align: 'center', className: 'Card' },
+        <div className='flip-card'>
+            <div className='card-front'>
+                <figure>
+                    <div className='CardImageFrame'>
+                        <img className='CardImage img-fluid'src={keyImage} alt={keyImage} />
+                    </div>
+                </figure>
+                <div className='CardTitle'>
+                    #{key}
+                </div>
+                <span className='CardFrontBody'>
+                    {iconDiv}
+                </span>
+            </div>
+            <div className='card-back'>
+                <div className='CardBackBody'>
+                    <div className='CardSubtitle'>
+                        {traits}
+                    </div>
+                    <div className='ButtonBox'>
+                        <button className='inspect' onClick={(e: { preventDefault: () => void; }) => 
+                            { e.preventDefault(); window.open(
+                                openseaLink,
+                                '_blank' // <- This is what makes it open in a new window.
+                            ); }}>
+                            OpenSea.io</button>
+                        <div className='CardText'>
+                            {contractAddress}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    )
+    return <>{component}</>
+}
+
+const createKomponent2 = (key: number, keyImage: string | undefined, contractAddress: string) => {
+    const openseaLink = "https://opensea.io/assets/ethereum/" + contractAddress + "/" + key
+    //let randomKey = Math.random()
+    if (keyImage?.substring(0,7) === 'ipfs://') { 
+        keyImage = 'https://dweb.link/ipfs/' + keyImage?.slice(7, keyImage.length)
+    }
+        console.log(key)
+
+
+        const component = React.createElement("div", {key: key, align:"center",
+                className: 'Card'},
+            <div className='flip-card '>
+                <div className='card-front'>
+                    <figure className='CardImageFrame'>
+                        <img className='CardImage img-fluid'src={keyImage} alt={keyImage} />
+                    </figure>
+                    <div className='CardTitle'>
+                            #{key}
+                    </div>
+                    <span className='CardFrontBody'>
+
+                    </span>
+                </div>
+                <div className='card-back'>
+                    <div className='CardBackBody'>
+                        <div className='CardSubtitle'>
+
+                        </div>
+                        <div className='ButtonBox'>
+                            <button className='inspect' onClick={(e: { preventDefault: () => void; }) => 
+                                { e.preventDefault(); window.open(
+                                    openseaLink,
+                                    '_blank' // <- This is what makes it open in a new window.
+                                ); }}>
+                                OpenSea.io</button>
+                            <div className='CardText'>
+                                {contractAddress}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
+
+            
+        )
+        
+    
+    return <>{component}</>
+}
+
 
 export default Kards
