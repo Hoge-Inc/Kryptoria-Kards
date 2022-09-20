@@ -54,11 +54,7 @@ export const Kards: React.FC<Props> = ({
                         if (jsonItem.trait_type === 'CLOTHING' && !aType){ cType =jsonItem.value } 
                         if (jsonItem.trait_type === 'FACE WEAR' && !hType){ fwType = jsonItem.value } 
                         if (jsonItem.trait_type === 'TATTOO' && !hType){ tType = jsonItem.value } 
-                    } else {
-                        //todo: clothes
-                        //console.log(item)
-                    }
-                    
+                    }                     
                 }
                 console.log(key, jsonItemList)
                 let iconDiv
@@ -93,18 +89,14 @@ export const Kards: React.FC<Props> = ({
                         </div>
                 }
                 let keyImage = images?.get(key)
-
-                
                 const component = createKomponent(key,keyImage,iconDiv,traits,contractAddress)
                 rendered.push(component);
             }
         }
     } 
     return (
-        <div className='CardBox '>
-            
+        <div className='CardBox'>
                 {rendered}
-
         </div>
     )
 }
@@ -117,10 +109,10 @@ const createKomponent = (key: number, keyImage: string | undefined, iconDiv: JSX
     const component = React.createElement("div", {key: key, align: 'center', className: 'Card' },
         <div className='flip-card'>
             <div className='card-front'>
-                <figure>
-                    <div className='CardImageFrame'>
-                        <img className='CardImage img-fluid'src={keyImage} alt={keyImage} />
-                    </div>
+                <div className='img-bg'></div>
+                <figure className='CardImageFrame'>
+                
+                    <img className='CardImage img-fluid'src={keyImage} alt={keyImage} />
                 </figure>
                 <div className='CardTitle'>
                     #{key}
@@ -178,7 +170,6 @@ const createKomponent2 = (key: number, keyImage: string | undefined, contractAdd
                 <div className='card-back'>
                     <div className='CardBackBody'>
                         <div className='CardSubtitle'>
-
                         </div>
                         <div className='ButtonBox'>
                             <button className='inspect' onClick={(e: { preventDefault: () => void; }) => 
@@ -192,14 +183,10 @@ const createKomponent2 = (key: number, keyImage: string | undefined, contractAdd
                             </div>
                         </div>
                     </div>
-                </div>
-                    
-            </div>
-
-            
+                </div>  
+            </div>            
         )
-        
-    
+
     return <>{component}</>
 }
 

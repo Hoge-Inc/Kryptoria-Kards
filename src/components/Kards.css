@@ -143,6 +143,7 @@
   .flip-card {
     width: inherit;
     height: inherit;
+    border-radius: var(--border);
     background: linear-gradient(teal 40%, navy 80%);
     position: relative;
     transform-style: preserve-3d;
@@ -160,7 +161,7 @@
   .card-back {
     width: 100%;
     height: 100%;
-    border-radius: 24px;
+    
     position: absolute;
     top: 0;
     left: 0;
@@ -174,6 +175,7 @@
     transform: rotateY(0deg);
     z-index: 1;
     flex-direction: column;
+    border-radius: inherit;
   }
   
   /* .card-back */
@@ -182,14 +184,127 @@
     align-items: center;
     transform: rotateY(180deg);
     z-index: 2;
+    border-radius: var(--rborder);
   }
   
   /* figure */
-  figure {
+figure {
 
     z-index: -1;
-  }
-  
+}
+.icons{   
+    color: honeydew;
+}
+.CardBox {
+    margin-top: 2%;
+    width: 100%;
+    display: grid;
+    gap: 10px;
+    justify-content: space-evenly;
+    --hue: 150;
+    --primary: hsl(var(--hue), 50%, 50%);
+    --white-1: hsl(0, 0%, 90%);
+    --white-2: hsl(0, 0%, 80%);
+    --dark: hsl(var(--hue), 25%, 10%);
+    --grey: hsl(0, 0%, 50%);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    --border: 80% 15% / 5% 20%;
+    --rborder: 20% 5% / 15% 80%;
+    --bborder: 35% 40% / 35% 20%;
+    text-align: center;
+    font-size: 12pt;
+    color: darkkhaki;
+    
+}
+
+.Card {
+    
+    perspective: 1000px;
+    margin-top: 25px;
+    padding: 5px;
+
+}
+
+.CardImageFrame{
+    
+    border: 4px solid black;
+    top: 15%;
+    margin: 10px;
+    border-radius: inherit;
+    position:sticky;
+}
+.CardImage{
+    width: 100%;
+    height: 100%;
+    padding: 0.25em;
+    border-radius: inherit;
+}
+.CardFrontBody{
+    position:fixed;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    bottom: 1%;
+    background: black;
+    padding: 1em;
+    border-radius: 30% / 10%;
+}
+
+.CardBackBody{
+    background: black;
+    padding: 1em;
+    height: 98%;
+    width: 98%;
+    border-radius: var(--bborder);
+}
+.CardTitle{
+
+    color: darkgoldenrod;
+    height: 2em;
+    font-size: 1.5em;
+    text-shadow: 2px 2px 1px darkblue;
+}
+.CardTitle{
+    margin: 22px;
+    position:absolute;
+}
+.CardSubtitle{
+    color: dimgray;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    height: 40%;
+}
+.CardText{
+    color: honeydew;
+}
+.inspect {
+    background: linear-gradient(180deg, 
+  rgb(112, 126, 250) 0%, 
+  rgba(250, 112, 228, 0.4) 100%);
+    border: 4px solid cyan;
+    height: 45px;
+    width: 160px;
+    font-size: large;
+    border-radius: 7px;
+    color: wheat;
+    text-shadow: 2px 2px 1px darkblue;
+    margin: 20px;
+}
+.inspect:hover {
+    opacity: 90%;
+    transform: scale(1.06);
+    cursor: pointer;
+    box-shadow: -2px 7px 5px MediumSeaGreen;    
+}  
+.inspect:active {
+    transform: translate(-1px, 1px);
+    box-shadow: -2px 4px 2px rgb(21, 252, 4);
+    opacity: 90%;  
+}
+
+
+
+
   /* The background image in front of the citizen */
   
   .img-bg {
@@ -198,19 +313,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-  }
-  
-  /* Citizen Image */
-
-    
+  }    
   .img-bg {
     background: hsla(var(--hue), 25%, 10%, .5);
   }
-  
   .card-front .img-bg {
-    clip-path: polygon(0 99%, 100% 40%, 100% 100%, 0 100%);
+    clip-path: polygon(36% 14%, 5% 15%, 6% 4%,  38% 3%);
   }
-  
   .card-front .img-bg::before {
     content: "";
   
@@ -238,118 +347,3 @@
     border-left-color: var(--primary);
     border-right-color: var(--primary);
   }
-
-
-
-
-.CardBox {
-    margin-top: 2%;
-    width: 100%;
-    display: grid;
-    gap: 10px;
-    justify-content: space-evenly;
-    --hue: 150;
-    --primary: hsl(var(--hue), 50%, 50%);
-    --white-1: hsl(0, 0%, 90%);
-    --white-2: hsl(0, 0%, 80%);
-    --dark: hsl(var(--hue), 25%, 10%);
-    --grey: hsl(0, 0%, 50%);
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
-    text-align: center;
-    font-size: 12pt;
-    color: darkkhaki;
-    
-}
-
-.Card {
-    
-    perspective: 1000px;
-    margin-top: 25px;
-    padding: 5px;
-
-    border-radius: 15px;
-    
-
-}
-
-.CardImageFrame{
-    
-    border: 4px solid black;
-    margin: 10px;
-    border-radius: 10px;
-    position:sticky;
-}
-.CardImage{
-    width: 100%;
-    height: 100%;
-    padding: 0.25em;
-    border-radius: 6px;
-}
-.CardFrontBody{
-    position:relative;
-    text-align: center;
-    width: 100%;
-    height: auto;
-    background: black;
-    padding: 1em;
-    border-radius: 30% / 10%;
-}
-
-.CardBackBody{
-    background: black;
-    padding: 1em;
-    height: 98%;
-    width: 98%;
-    border-radius: 30% / 10%;
-}
-.CardTitle{
-
-    color: darkgoldenrod;
-    height: 2em;
-    font-size: 1.5em;
-    text-shadow: 2px 2px 1px darkblue;
-}
-.CardSubtitle{
-    color: dimgray;
-    margin-top: 30px;
-    margin-bottom: 50px;
-    height: 40%;
-}
-.CardText{
-    color: honeydew;
-
-}
-
-.icons{
-    
-    color: honeydew;
-}
-
-.inspect {
-    background: linear-gradient(180deg, 
-  rgb(112, 126, 250) 0%, 
-  rgba(250, 112, 228, 0.4) 100%);
-    border: 4px solid cyan;
-    height: 60px;
-    width: 180px;
-    font-size: large;
-    border-radius: 10px;
-    color: wheat;
-    text-shadow: 2px 2px 1px darkblue;
-    margin: 20px;
-}
-
-.inspect:hover {
-    opacity: 90%;
-    transform: scale(1.06);
-    cursor: pointer;
-    box-shadow: -2px 7px 5px MediumSeaGreen;    
-}  
-
-.inspect:active {
-    transform: translate(-1px, 1px);
-    box-shadow: -2px 4px 2px rgb(21, 252, 4);
-    opacity: 90%;  
-}
-
