@@ -229,7 +229,7 @@ figure {
     margin-top: 2%;
     width: 100%;
     display: grid;
-    gap: 10px;
+    row-gap: 4em;
     justify-content: space-evenly;
     --hue: 150;
     --primary: hsl(var(--hue), 50%, 50%);
