@@ -1,6 +1,5 @@
 import React from 'react';
 import { GiAbdominalArmor, GiSamusHelmet, GiSleevelessJacket, GiSunglasses, GiQuillInk } from 'react-icons/gi'
-import { JsxEmit } from 'typescript';
 import './Kards.css'
 
 
