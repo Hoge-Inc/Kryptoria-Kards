@@ -20,37 +20,45 @@ const App: React.FC = () => {
   const [landTokenIds, setLandTokenIds] = useState<Map<number, []>>()
   const [landImages, setLandImages] = useState<Map<number, string>>()
 
-  const handleOnSubmit = (e: { preventDefault: () => void; }) => {
+  const p1 = {
+    holderAddress: holderAddress,
+    contractAddress: contractAddress,
+    loaded: loaded,
+    setLoaded: setLoaded,
+    valid: valid,
+    tokenIds: tokenIds,
+    setTokenIds: setTokenIds,
+    setImages: setImages
+
+  }
+  const p2 = {
+    holderAddress: holderAddress,
+    contractAddress: landContractAddress,
+    loaded: landLoaded,
+    setLoaded: setLandLoaded,
+    valid: valid,
+    tokenIds: landTokenIds,
+    setTokenIds: setLandTokenIds,
+    setImages: setLandImages 
+  }
+
+  const handleOnSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    setTokenIds(undefined)
+
     if (!ethers.utils.isAddress(contractAddress) ) { setValid(false); setSomeMsg('Need Valid Address') } 
     else { setValid(true); setSomeMsg('') }
-    setSomeMsg('') //hides message block
-    setLoaded(false) //resets loaded before new fetch
+      
+      setSomeMsg('') //hides message block
+      setLoaded(false) //resets loaded before new fetch
+      setLandLoaded(false) 
+      setTokenIds(undefined)
+      setLandTokenIds(undefined)
   };
 
   return (
   <div className="App">
-    <GetNFTs 
-      holderAddress={holderAddress}
-      contractAddress={contractAddress}
-      loaded={loaded}
-      setLoaded={setLoaded}
-      valid={valid}
-      tokenIds={tokenIds}
-      setTokenIds={setTokenIds}
-      setImages={setImages}
-    />
-    <GetNFTs 
-      holderAddress={holderAddress}
-      contractAddress={landContractAddress}
-      loaded={landLoaded}
-      setLoaded={setLandLoaded}
-      valid={valid}
-      tokenIds={landTokenIds}
-      setTokenIds={setLandTokenIds}
-      setImages={setLandImages}
-    />
+    <GetNFTs {...p1} />
+    <GetNFTs {...p2} />
     <header className="App-header">
         <h1>Kryptoria Kards</h1>
         <img src={logo} className="App-logo" alt="logo" />

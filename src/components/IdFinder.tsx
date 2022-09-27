@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 type Props = {
     contractAddress: string;
@@ -22,9 +22,9 @@ export const GetNFTs: React.FC<Props> = ({
     setImages
 
 }) => {
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+
     React.useEffect(() => {
-        if (!isLoading && !tokenIds) {
+        if (!tokenIds) {
             const API_KEY = process.env.REACT_APP_MORALIS_API_KEY
             if (!API_KEY) { alert('moralis api key not set in env') } else {
                 const options = {
@@ -35,7 +35,6 @@ export const GetNFTs: React.FC<Props> = ({
                     }
                 }
                 if (!holderAddress || !valid || loaded) {} else {
-                    setIsLoading(true)
                     setTokenIds(new Map<number, []>())
                     const fetchUrl = 'https://deep-index.moralis.io/api/v2/' + 
                     holderAddress + '/nft/' + contractAddress + '?chain=eth&format=decimal'
@@ -47,6 +46,7 @@ export const GetNFTs: React.FC<Props> = ({
                         const r = response.result
                         if (!r || r.length === 0) {} 
                         else {
+                            console.log(r)
                             r.forEach((someValue: any) => {
                                 if (someValue.token_id !== undefined){
                                     idMap.set(someValue.token_id, JSON.parse(someValue.metadata).attributes)
@@ -59,11 +59,12 @@ export const GetNFTs: React.FC<Props> = ({
                         setLoaded(true)
                     })
                     .catch(err => console.error(err))
-                    .finally(() => setIsLoading(false) );
+                    .finally(() => console.log('Loaded : ', contractAddress) );
                 }      
             }
         }
-    },[contractAddress, isLoading, loaded, setImages, setLoaded, setTokenIds, tokenIds, holderAddress, valid])
+    },[contractAddress, loaded, setImages, setLoaded, setTokenIds, tokenIds, holderAddress, valid])
+    
     return <></>
 }
 

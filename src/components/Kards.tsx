@@ -1,5 +1,15 @@
 import React from 'react';
-import { GiAbdominalArmor, GiSamusHelmet, GiSleevelessJacket, GiSunglasses, GiQuillInk } from 'react-icons/gi'
+import { 
+    GiAbdominalArmor, 
+    GiSamusHelmet, 
+    GiClothes, 
+    GiSunglasses, 
+    GiDrop,
+    GiDrippingTube,
+    GiGlobe,
+    GiGearHammer,
+    GiCastle
+ } from 'react-icons/gi'
 import './Kards.css'
 
 
@@ -43,11 +53,17 @@ export const Kards: React.FC<Props> = ({
 
 
 class Traits {
-    aType: any
-    hType: any
-    cType: any
-    fwType: any
-    tType: any
+    armorType: any
+    helmetType: any
+    clothingType: any
+    facewearType: any
+    tattooType: any
+    resourceType: any
+    cords: any
+    defenceType: any
+    yield: any
+    settlement: any
+    bonus: any
 }
 const getTraits =(value: [], attribute: Traits) => {
     let itemKey = Math.random()
@@ -56,46 +72,75 @@ const getTraits =(value: [], attribute: Traits) => {
         const jsonItem = JSON.parse(JSON.stringify(item))
         if (jsonItem.trait_type !== undefined && jsonItem.value !== 'None' && jsonItem.value !== 0) { 
             traits.push(React.createElement("div", {key: itemKey++}, jsonItem.trait_type, ' : ', jsonItem.value))
-            if (jsonItem.trait_type === 'ARMOUR' && !attribute.aType){ attribute.aType =jsonItem.value } 
-            if (jsonItem.trait_type === 'HELMET' && !attribute.hType){ attribute.hType = jsonItem.value } 
-            if (jsonItem.trait_type === 'CLOTHING' && !attribute.aType){ attribute.cType =jsonItem.value } 
-            if (jsonItem.trait_type === 'FACE WEAR' && !attribute.hType){ attribute.fwType = jsonItem.value } 
-            if (jsonItem.trait_type === 'TATTOO' && !attribute.hType){ attribute.tType = jsonItem.value } 
+            if (jsonItem.trait_type === 'ARMOUR')       { attribute.armorType =jsonItem.value } 
+            if (jsonItem.trait_type === 'HELMET')       { attribute.helmetType = jsonItem.value } 
+            if (jsonItem.trait_type === 'CLOTHING')     { attribute.clothingType =jsonItem.value } 
+            if (jsonItem.trait_type === 'FACE WEAR')    { attribute.facewearType = jsonItem.value } 
+            if (jsonItem.trait_type === 'TATTOO')       { attribute.tattooType = jsonItem.value }
+            if (jsonItem.trait_type === 'DEFENCE')      { attribute.defenceType = jsonItem.value }
+            if (jsonItem.trait_type === 'RESOURCE')     { attribute.resourceType = jsonItem.value }
+            if (jsonItem.trait_type === 'Yield')        { attribute.yield = jsonItem.value }
+            if (jsonItem.trait_type === 'COORDINATES')  { attribute.cords = jsonItem.value }
+            if (jsonItem.trait_type === 'Village')      { attribute.settlement = jsonItem.trait_type; attribute.bonus = jsonItem.value }
+            if (jsonItem.trait_type === 'Town')         { attribute.settlement = jsonItem.trait_type; attribute.bonus = jsonItem.value }
+            if (jsonItem.trait_type === 'City')         { attribute.settlement = jsonItem.trait_type; attribute.bonus = jsonItem.value }
+            if (jsonItem.trait_type === 'Capital')      { attribute.settlement = jsonItem.trait_type; attribute.bonus = jsonItem.value }
+            
+            
+            
         }                     
     }
     return traits
 }
 const createIconDiv = (attribute: Traits) => {
     let iconDiv
-    if (!attribute.aType) {
-        iconDiv = 
+    if (attribute.armorType) {
+        iconDiv =
         <div className='icons'>
-            <div hidden={!attribute.tType}>
-                <GiQuillInk /> {attribute.tType}
-            </div>                            
-            <div hidden={!attribute.fwType}>
-                <GiSunglasses /> {attribute.fwType}
+            <div hidden={!attribute.tattooType}>
+                <GiDrop /> {attribute.tattooType}
             </div>
-            <div hidden={!attribute.cType}>
-                <GiSleevelessJacket/> {attribute.cType}  
+            <div hidden={!attribute.facewearType}>
+                <GiSunglasses /> {attribute.facewearType}
+            </div>
+            <div hidden={!attribute.helmetType}>
+                <GiSamusHelmet /> {attribute.helmetType}
+            </div>
+            <div hidden={!attribute.armorType}>
+                <GiAbdominalArmor/> {attribute.armorType}  
             </div>  
         </div>
-    } else {
+    } else if (attribute.clothingType) {
+        iconDiv = 
+        <div className='icons'>
+            <div hidden={!attribute.tattooType}>
+                <GiDrop /> {attribute.tattooType}
+            </div>                            
+            <div hidden={!attribute.facewearType}>
+                <GiSunglasses /> {attribute.facewearType}
+            </div>
+            <div hidden={!attribute.clothingType}>
+                <GiClothes/> {attribute.clothingType}  
+            </div>  
+        </div>
+    } else if (attribute.cords){
         iconDiv =
             <div className='icons'>
-                <div hidden={!attribute.tType}>
-                    <GiQuillInk /> {attribute.tType}
+                <div hidden={!attribute.resourceType}>
+                    <GiDrippingTube /> {attribute.resourceType}
                 </div>
-                <div hidden={!attribute.fwType}>
-                    <GiSunglasses /> {attribute.fwType}
+                <div hidden={!attribute.cords}>
+                    <GiGlobe /> {attribute.cords}
                 </div>
-                <div hidden={!attribute.hType}>
-                    <GiSamusHelmet /> {attribute.hType}
-                </div>
-                <div hidden={!attribute.aType}>
-                    <GiAbdominalArmor/> {attribute.aType}  
-                </div>  
+                <div hidden={!attribute.defenceType}>
+                    <GiGearHammer /> {attribute.defenceType}
+                </div>   
+                <div hidden={!attribute.settlement}>
+                    <GiCastle /> {attribute.settlement}
+                </div>   
             </div>
+    } else{
+        iconDiv = <div className='icons'></div>
     }
     return iconDiv
 }
